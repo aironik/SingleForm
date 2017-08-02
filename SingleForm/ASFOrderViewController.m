@@ -8,7 +8,9 @@
 
 #import "ASFOrderViewController.h"
 
+#import "ASFOrder.h"
 #import "ASFTextFieldCell.h"
+
 
 static NSString *const Pos = @"pos";
 static NSString *const CellClassName = @"cellClassName";
@@ -16,9 +18,17 @@ static NSString *const Title = @"title";
 static NSString *const Placeholder = @"placeholder";
 static NSString *const TargetKeyPath = @"targetKeyPath";
 
+static NSString *const ActionCell = @"ActionCell";
+typedef enum {
+    SectionData = 0,
+    SectionAction,
+    SectionsCount
+} Sections;
+
 
 @interface ASFOrderViewController ()
 
+@property (nonatomic, strong, nonnull) ASFOrder *order;
 @property (nonatomic, strong, nonnull, readonly) NSArray *actions;
 
 @end
@@ -30,6 +40,13 @@ static NSString *const TargetKeyPath = @"targetKeyPath";
 
 @synthesize actions = _actions;
 
+
+- (ASFOrder *)order {
+    if (_order == nil) {
+        _order = [[ASFOrder alloc] init];
+    }
+    return _order;
+}
 
 - (NSArray *)actions {
     if (_actions == nil) {
@@ -45,8 +62,6 @@ static NSString *const TargetKeyPath = @"targetKeyPath";
                 @{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Комментарий", @""), Placeholder: NSLocalizedString(@"Ваша пицца самая вкусная!", @""), TargetKeyPath: @"data.comments" },
                 @{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество персон", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.persons" },
                 @{ Pos: @10, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество товаров", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.orderItems[0].amount" },
-                // TODO: action
-                @{ Pos: @11, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Отправить заказ", @""), Placeholder: NSLocalizedString(@"Отправить заказ", @""), TargetKeyPath: @"send_action" }
         ];
     }
     return _actions;
@@ -66,27 +81,61 @@ static NSString *const TargetKeyPath = @"targetKeyPath";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return SectionsCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.actions.count;
+    switch (section) {
+        case SectionData:
+            return self.actions.count;
+        case SectionAction:
+            return 1;
+        default:
+        break;
+    }
+    NSAssert(NO, @"Unknown section");
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSAssert(indexPath.section == 0 && indexPath.row < self.actions.count, @"Unknown row");
+    switch (indexPath.section) {
+        case SectionData:
+            return [self tableView:tableView dataCellForRowAtIndexPath:indexPath];
+        case SectionAction:
+            return [self tableView:tableView actionCellForRowAtIndexPath:indexPath];
+        default:
+            break;
+    }
+    NSAssert(NO, @"Unknown section");
+    return nil;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView dataCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSAssert(indexPath.section == SectionData && indexPath.row < self.actions.count, @"Unknown row");
     NSDictionary *action = self.actions[indexPath.row];
 
     NSString *cellClassName = action[CellClassName];
-//    Class cellClass = NSClassFromString(cellClassName);
-    ASFTextFieldCell *result = [self.tableView dequeueReusableCellWithIdentifier:cellClassName];
+    ASFTextFieldCell *result = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+    result.context = action;
 
     result.titleLabel.text = action[Title];
-    result.textField.text = nil;
+    result.textField.text = [self.order stringForKeyPath:action[TargetKeyPath]];
     result.textField.placeholder = action[Placeholder];
 
     return result;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView actionCellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSAssert(indexPath.section == SectionAction && indexPath.row == 0, @"Unknown row");
+    UITableViewCell *result = [tableView dequeueReusableCellWithIdentifier:ActionCell];
+    return result;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 
 @end

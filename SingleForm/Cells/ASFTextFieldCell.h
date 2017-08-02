@@ -11,5 +11,7 @@
     
 @property (nonatomic, weak, nullable) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak, nullable) IBOutlet UITextField *textField;
-    
+
+@property (nonatomic, strong, nullable) NSDictionary *context;
+
 @end

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Заказ-->
         <scene sceneID="qxj-22-Ldc">
             <objects>
-                <tableViewController id="2R2-8O-34f" customClass="ASFOrderViewController" sceneMemberID="viewController">
+                <tableViewController title="Заказ" id="2R2-8O-34f" customClass="ASFOrderViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" id="mNj-1T-6f4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -55,13 +55,35 @@
                                     <outlet property="titleLabel" destination="V8c-JJ-AId" id="gdo-hd-BhO"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" id="J7D-s9-5vt">
+                                <rect key="frame" x="0.0" y="99" width="375" height="71"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7D-s9-5vt" id="Alp-hs-0kp">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Отправить заказ" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1u-BQ-3P1">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="A1u-BQ-3P1" secondAttribute="trailing" id="GPX-1G-0km"/>
+                                        <constraint firstItem="A1u-BQ-3P1" firstAttribute="leading" secondItem="Alp-hs-0kp" secondAttribute="leading" id="KcB-sN-iuM"/>
+                                        <constraint firstAttribute="bottom" secondItem="A1u-BQ-3P1" secondAttribute="bottom" id="cPm-vq-3Gw"/>
+                                        <constraint firstItem="A1u-BQ-3P1" firstAttribute="top" secondItem="Alp-hs-0kp" secondAttribute="top" id="jBs-rJ-oeY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="2R2-8O-34f" id="jft-6v-6jJ"/>
                             <outlet property="delegate" destination="2R2-8O-34f" id="ldC-5G-Rbp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="g7z-qj-Ogt"/>
+                    <navigationItem key="navigationItem" title="Заказ" id="g7z-qj-Ogt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bCg-TC-Dww" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
