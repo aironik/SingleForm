@@ -34,17 +34,19 @@ static NSString *const TargetKeyPath = @"targetKeyPath";
 - (NSArray *)actions {
     if (_actions == nil) {
         _actions = @[
-                @{ Pos: @1, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @2, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @3, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @4, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @5, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @6, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @7, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @10, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @11, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Иван Иванович", @""), TargetKeyPath: @"data.sender.name" }
+                @{ Pos: @1, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Евгений Лукашин", @""), TargetKeyPath: @"data.sender.name" },
+                @{ Pos: @2, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Email", @""), Placeholder: NSLocalizedString(@"ivan@example.com", @""), TargetKeyPath: @"" },
+                @{ Pos: @3, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Телефон", @""), Placeholder: NSLocalizedString(@"+7(555)555-55-55", @""), TargetKeyPath: @"data.sender.phone" },
+                @{ Pos: @4, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Улица", @""), Placeholder: NSLocalizedString(@"3-я Строителей", @""), TargetKeyPath: @"data.deliveryAddress.street" },
+                @{ Pos: @5, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Дом", @""), Placeholder: NSLocalizedString(@"25", @""), TargetKeyPath: @"data.deliveryAddress.house" },
+                @{ Pos: @6, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Квартира", @""), Placeholder: NSLocalizedString(@"12", @""), TargetKeyPath: @"data.deliveryAddress.apartment" },
+                // TODO: picker
+                @{ Pos: @7, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Способ оплаты", @""), Placeholder: NSLocalizedString(@"Наличными", @""), TargetKeyPath: @"data.paymentMethod" },
+                @{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Комментарий", @""), Placeholder: NSLocalizedString(@"Ваша пицца самая вкусная!", @""), TargetKeyPath: @"data.comments" },
+                @{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество персон", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.persons" },
+                @{ Pos: @10, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество товаров", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.orderItems[0].amount" },
+                // TODO: action
+                @{ Pos: @11, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Отправить заказ", @""), Placeholder: NSLocalizedString(@"Отправить заказ", @""), TargetKeyPath: @"send_action" }
         ];
     }
     return _actions;

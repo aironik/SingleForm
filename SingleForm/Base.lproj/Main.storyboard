@@ -34,7 +34,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Some Text" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eGq-13-mJl">
-                                            <rect key="frame" x="20" y="22.5" width="347" height="26"/>
+                                            <rect key="frame" x="20" y="30.5" width="347" height="26"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -42,7 +42,7 @@
                                         </textField>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="eGq-13-mJl" firstAttribute="top" secondItem="V8c-JJ-AId" secondAttribute="bottom" id="6Ot-PT-cQo"/>
+                                        <constraint firstItem="eGq-13-mJl" firstAttribute="top" secondItem="V8c-JJ-AId" secondAttribute="bottom" constant="8" id="6Ot-PT-cQo"/>
                                         <constraint firstItem="V8c-JJ-AId" firstAttribute="trailing" secondItem="j1u-lz-jrs" secondAttribute="trailingMargin" id="IjG-7z-k4x"/>
                                         <constraint firstItem="eGq-13-mJl" firstAttribute="trailing" secondItem="j1u-lz-jrs" secondAttribute="trailingMargin" id="Vib-Vd-5Fk"/>
                                         <constraint firstItem="V8c-JJ-AId" firstAttribute="top" secondItem="j1u-lz-jrs" secondAttribute="top" constant="8" id="Yee-G3-ur3"/>
