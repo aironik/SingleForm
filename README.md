@@ -3,19 +3,19 @@
 Одностраничное приложение для отправки заказа:
 На странице должна присутствовать форма с полями:
 
-* Имя (```data.sender.name```)
-* Email (игнорируется)
-* Телефон (```data.sender.phone```)
-* Улица (```data.deliveryAddress.street```)
-* Дом (```data.deliveryAddress.house```)
-* Квартира (```data.deliveryAddress.apartment```)
-* Способ оплаты (```data.paymentMethod```):
+1. Имя (```data.sender.name```)
+2. Email (игнорируется)
+3. Телефон (```data.sender.phone```)
+4. Улица (```data.deliveryAddress.street```)
+5. Дом (```data.deliveryAddress.house```)
+6. Квартира (```data.deliveryAddress.apartment```)
+7. Способ оплаты (```data.paymentMethod```):
     * ```payment_encash``` - Нналичными;
     * ```payment_card_restaurant``` Картой курьеру
-* Комментарий (```data.comments```)
-* Кол-во персон (```data.persons```)
-* Кол-во товаров (```data.orderItems[0].amount```)
-* Кнопка отправить заказ
+8. Комментарий (```data.comments```)
+9. Кол-во персон (```data.persons```)
+10. Кол-во товаров (```data.orderItems[0].amount```)
+11. Кнопка отправить заказ
 
 При нажатии кнопки отправить заказ должна происходить валидация полей:
 

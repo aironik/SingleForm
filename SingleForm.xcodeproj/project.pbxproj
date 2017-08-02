@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		00770D291F31B83C000901B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00770D281F31B83C000901B6 /* main.m */; };
 		00770D2C1F31B83C000901B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00770D2B1F31B83C000901B6 /* AppDelegate.m */; };
-		00770D2F1F31B83C000901B6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00770D2E1F31B83C000901B6 /* ViewController.m */; };
+		00770D2F1F31B83C000901B6 /* ASFOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 00770D2E1F31B83C000901B6 /* ASFOrderViewController.m */; };
 		00770D321F31B83C000901B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00770D301F31B83C000901B6 /* Main.storyboard */; };
 		00770D341F31B83C000901B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00770D331F31B83C000901B6 /* Assets.xcassets */; };
 		00770D371F31B83C000901B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00770D351F31B83C000901B6 /* LaunchScreen.storyboard */; };
+		C4E3E7F654C600A67FBA009D /* ASFTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,13 +21,15 @@
 		00770D281F31B83C000901B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00770D2A1F31B83C000901B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		00770D2B1F31B83C000901B6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		00770D2D1F31B83C000901B6 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		00770D2E1F31B83C000901B6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		00770D2D1F31B83C000901B6 /* ASFOrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASFOrderViewController.h; sourceTree = "<group>"; };
+		00770D2E1F31B83C000901B6 /* ASFOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASFOrderViewController.m; sourceTree = "<group>"; };
 		00770D311F31B83C000901B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		00770D331F31B83C000901B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		00770D361F31B83C000901B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		00770D381F31B83C000901B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00770D3E1F31B902000901B6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFTextFieldCell.m; sourceTree = "<group>"; };
+		C4E3ED9849091F7E91C79453 /* ASFTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFTextFieldCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,15 +63,16 @@
 		00770D261F31B83C000901B6 /* SingleForm */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3ED8AA89956FEBA74E986 /* Cells */,
+				00770D271F31B83C000901B6 /* Supporting Files */,
 				00770D2A1F31B83C000901B6 /* AppDelegate.h */,
 				00770D2B1F31B83C000901B6 /* AppDelegate.m */,
-				00770D2D1F31B83C000901B6 /* ViewController.h */,
-				00770D2E1F31B83C000901B6 /* ViewController.m */,
+				00770D2D1F31B83C000901B6 /* ASFOrderViewController.h */,
+				00770D2E1F31B83C000901B6 /* ASFOrderViewController.m */,
 				00770D301F31B83C000901B6 /* Main.storyboard */,
 				00770D331F31B83C000901B6 /* Assets.xcassets */,
 				00770D351F31B83C000901B6 /* LaunchScreen.storyboard */,
 				00770D381F31B83C000901B6 /* Info.plist */,
-				00770D271F31B83C000901B6 /* Supporting Files */,
 			);
 			path = SingleForm;
 			sourceTree = "<group>";
@@ -79,6 +83,15 @@
 				00770D281F31B83C000901B6 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C4E3ED8AA89956FEBA74E986 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C4E3ED9849091F7E91C79453 /* ASFTextFieldCell.h */,
+				C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +120,7 @@
 		00770D1C1F31B83C000901B6 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ASF;
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = aironik;
 				TargetAttributes = {
@@ -152,9 +166,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00770D2F1F31B83C000901B6 /* ViewController.m in Sources */,
+				00770D2F1F31B83C000901B6 /* ASFOrderViewController.m in Sources */,
 				00770D2C1F31B83C000901B6 /* AppDelegate.m in Sources */,
 				00770D291F31B83C000901B6 /* main.m in Sources */,
+				C4E3E7F654C600A67FBA009D /* ASFTextFieldCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +328,7 @@
 				00770D3D1F31B83C000901B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

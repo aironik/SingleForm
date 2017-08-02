@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ASFOrderViewController.h
 //  SingleForm
 //
 //  Created by aironik on 02/08/2017.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ASFOrderViewController : UITableViewController
 
 
 @end
