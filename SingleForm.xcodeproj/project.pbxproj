@@ -13,6 +13,7 @@
 		00770D321F31B83C000901B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00770D301F31B83C000901B6 /* Main.storyboard */; };
 		00770D341F31B83C000901B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00770D331F31B83C000901B6 /* Assets.xcassets */; };
 		00770D371F31B83C000901B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00770D351F31B83C000901B6 /* LaunchScreen.storyboard */; };
+		C4E3E14BB5BEC99B8E369787 /* ASFCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E2A5408F610FB0DCCF3F /* ASFCell.m */; };
 		C4E3E7F654C600A67FBA009D /* ASFTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */; };
 		C4E3EE60ADAF44AD67DFC995 /* ASFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EA2D9A72A7ADD0251F6D /* ASFOrder.m */; };
 /* End PBXBuildFile section */
@@ -30,8 +31,11 @@
 		00770D381F31B83C000901B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00770D3E1F31B902000901B6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C4E3E26001F2EE05F8438682 /* ASFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFOrder.h; sourceTree = "<group>"; };
+		C4E3E2A5408F610FB0DCCF3F /* ASFCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFCell.m; sourceTree = "<group>"; };
+		C4E3E4DB2A093F12FC0D626B /* ASFCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFCell.h; sourceTree = "<group>"; };
 		C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFTextFieldCell.m; sourceTree = "<group>"; };
 		C4E3EA2D9A72A7ADD0251F6D /* ASFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFOrder.m; sourceTree = "<group>"; };
+		C4E3EB2DA5127446C65D49EE /* ASFCellObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFCellObserver.h; sourceTree = "<group>"; };
 		C4E3ED9849091F7E91C79453 /* ASFTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFTextFieldCell.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +96,9 @@
 		C4E3ED8AA89956FEBA74E986 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3E4DB2A093F12FC0D626B /* ASFCell.h */,
+				C4E3E2A5408F610FB0DCCF3F /* ASFCell.m */,
+				C4E3EB2DA5127446C65D49EE /* ASFCellObserver.h */,
 				C4E3ED9849091F7E91C79453 /* ASFTextFieldCell.h */,
 				C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */,
 			);
@@ -184,6 +191,7 @@
 				00770D291F31B83C000901B6 /* main.m in Sources */,
 				C4E3E7F654C600A67FBA009D /* ASFTextFieldCell.m in Sources */,
 				C4E3EE60ADAF44AD67DFC995 /* ASFOrder.m in Sources */,
+				C4E3E14BB5BEC99B8E369787 /* ASFCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

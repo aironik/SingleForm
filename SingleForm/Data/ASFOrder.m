@@ -62,11 +62,61 @@
 }
 
 - (NSString *)stringForKeyPath:(NSString *)keyPath {
-    return [self.data valueForKeyPath:keyPath];
+    __block id data = self.data;
+    NSArray *keyComponents = [keyPath componentsSeparatedByString:@"."];
+    [keyComponents enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        NSString *key = obj;
+        if ([key containsString:@"["]) {
+            NSAssert(idx < keyComponents.count - 1, @"Last array doesn't support. TODO:");
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(^)(.+)(\\[)(\\d+)(\\]$)"
+                                                                                   options:NSRegularExpressionCaseInsensitive
+                                                                                     error:NULL];
+            NSArray<NSTextCheckingResult *> *r = [regex matchesInString:key options:NSMatchingAnchored range:NSMakeRange(0, key.length)];
+            if (r.count == 1 && r[0].numberOfRanges == 6) {
+                NSString *indexString = [key substringWithRange:[r[0] rangeAtIndex:4]];
+                NSString *key2 = [key substringWithRange:[r[0] rangeAtIndex:2]];
+                
+                data = [data valueForKeyPath:key2];
+                data = [data objectAtIndex:[indexString integerValue]];
+            }
+        }
+        else {
+            data = [data valueForKeyPath:key];
+        }
+    }];
+    return data;
 }
 
 - (void)setString:(NSString *)string forKeyPath:(NSString *)keyPath {
-    [self.data setValue:string forKey:keyPath];
+    // TODO: get rid copy-past code
+    __block id data = self.data;
+    NSArray *keyComponents = [keyPath componentsSeparatedByString:@"."];
+    [keyComponents enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        NSString *key = obj;
+        if ([key containsString:@"["]) {
+            NSAssert(idx < keyComponents.count - 1, @"Last array doesn't support. TODO:");
+            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(^)(.+)(\\[)(\\d+)(\\]$)"
+                                                                                   options:NSRegularExpressionCaseInsensitive
+                                                                                     error:NULL];
+            NSArray<NSTextCheckingResult *> *r = [regex matchesInString:key options:NSMatchingAnchored range:NSMakeRange(0, key.length)];
+            if (r.count == 1 && r[0].numberOfRanges == 6) {
+                NSString *indexString = [key substringWithRange:[r[0] rangeAtIndex:4]];
+                NSString *key2 = [key substringWithRange:[r[0] rangeAtIndex:2]];
+                
+                data = [data valueForKeyPath:key2];
+                data = [data objectAtIndex:[indexString integerValue]];
+            }
+        }
+        else {
+            const BOOL isLast = (idx == keyComponents.count - 1);
+            if (isLast) {
+                [data setValue:string forKeyPath:key];
+            }
+            else {
+                data = [data valueForKeyPath:key];
+            }
+        }
+    }];
 }
 
 @end

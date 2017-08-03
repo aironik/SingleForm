@@ -6,12 +6,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "ASFCell.h"
 
-@interface ASFTextFieldCell : UITableViewCell
+
+@interface ASFTextFieldCell : ASFCell
     
 @property (nonatomic, weak, nullable) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak, nullable) IBOutlet UITextField *textField;
 
-@property (nonatomic, strong, nullable) NSDictionary *context;
 
 @end
