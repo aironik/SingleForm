@@ -63,7 +63,10 @@ typedef enum {
                 @{ Pos: @6, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Квартира", @""), Placeholder: NSLocalizedString(@"12", @""), TargetKeyPath: @"data.deliveryAddress.apartment" },
                 // TODO: picker
                 @{ Pos: @7, CellClassName: @"ASFOptionsCell", Title: NSLocalizedString(@"Способ оплаты", @""), TargetKeyPath: @"data.paymentMethod",
-                        Options: @{ @"payment_encash": @"Наличными", @"payment_card_restaurant": @"Картой курьеру"}
+                        Options: @[
+                            @{ @"value": @"payment_encash", @"title": @"Наличными" },
+                            @{ @"value": @"payment_card_restaurant", @"title": @"Картой курьеру" }
+                        ]
                 },
                 @{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Комментарий", @""), Placeholder: NSLocalizedString(@"Ваша пицца самая вкусная!", @""), TargetKeyPath: @"data.comments" },
                 @{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество персон", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.persons" },
@@ -143,7 +146,13 @@ typedef enum {
         ASFOptionsCell *optionsCell = (ASFOptionsCell *)cell;
         optionsCell.titleLabel.text = action[Title];
         NSString *value = [self.order stringForKeyPath:action[TargetKeyPath]];
-        optionsCell.valueLabel.text = action[Options][value];
+        NSArray<NSDictionary<NSString *, NSString *> *> *options = action[Options];
+        optionsCell.valueLabel.text = nil;
+        [options enumerateObjectsUsingBlock:^(NSDictionary<NSString *, NSString *> *_Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+            if ([value isEqualToString:obj[@"value"]]) {
+                optionsCell.valueLabel.text = obj[@"title"];
+            }
+        }];
     }
 }
 
@@ -177,9 +186,16 @@ typedef enum {
         // do nothing
     }
     else if ([@"ASFOptionsCell" isEqualToString:cellClassName]) {
-        ASFOptionsViewController *childVireController = [[ASFOptionsViewController alloc] initWithNibName:nil bundle:nil];
-        childVireController.options = action[Options];
-        [self.navigationController pushViewController:childVireController animated:YES];
+        ASFOptionsViewController *childViewController = [[ASFOptionsViewController alloc] initWithNibName:nil bundle:nil];
+        childViewController.options = action[Options];
+        childViewController.currentValue = [self.order stringForKeyPath:action[TargetKeyPath]];
+        __weak typeof(self) weakSelf = self;
+        childViewController.selectAction = ^(NSString *value) {
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf.order setString:value forKeyPath:action[TargetKeyPath]];
+            [strongSelf.tableView reloadData];
+        };
+        [self.navigationController pushViewController:childViewController animated:YES];
     }
 }
 

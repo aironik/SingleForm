@@ -79,13 +79,13 @@
 				C4E3ED8AA89956FEBA74E986 /* Cells */,
 				C4E3EE32E2E7709754D391C4 /* Data */,
 				00770D271F31B83C000901B6 /* Supporting Files */,
+				C4E3E271B27DE2BE7AB68C83 /* ViewControllers */,
 				00770D2A1F31B83C000901B6 /* AppDelegate.h */,
 				00770D2B1F31B83C000901B6 /* AppDelegate.m */,
 				00770D301F31B83C000901B6 /* Main.storyboard */,
 				00770D331F31B83C000901B6 /* Assets.xcassets */,
 				00770D351F31B83C000901B6 /* LaunchScreen.storyboard */,
 				00770D381F31B83C000901B6 /* Info.plist */,
-				C4E3E271B27DE2BE7AB68C83 /* ViewControllers */,
 			);
 			path = SingleForm;
 			sourceTree = "<group>";
@@ -101,10 +101,10 @@
 		C4E3E271B27DE2BE7AB68C83 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3E017E72171EEF2BA60EB /* ASFOptionsViewController.h */,
+				C4E3E4790659C2486668B02C /* ASFOptionsViewController.m */,
 				C4E3E82AD4F30BF5207A0C5C /* ASFOrderViewController.h */,
 				C4E3EB5A8EFBBF01E7150498 /* ASFOrderViewController.m */,
-				C4E3E4790659C2486668B02C /* ASFOptionsViewController.m */,
-				C4E3E017E72171EEF2BA60EB /* ASFOptionsViewController.h */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";

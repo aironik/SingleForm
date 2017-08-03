@@ -10,5 +10,7 @@
 @interface ASFOptionsViewController : UITableViewController
 
 @property (nonatomic, strong, nullable) NSArray<NSDictionary<NSString *, NSString *> *> *options;
+@property (nonatomic, copy, nullable) NSString *currentValue;
+@property(nonatomic, copy) void (^selectAction)(NSString *);
 
 @end
