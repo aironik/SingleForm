@@ -34,7 +34,7 @@
                                 } mutableCopy]
                         ],
                         @"persons": @"",            // <КОЛ-ВО ПЕРСОН>,
-                        @"paymentMethod": @"",      // <СПОСОБ ОПЛАТЫ> (payment_encash - Наличными, payment_card_restaurant - Картой курьеру)
+                        @"paymentMethod": @"payment_encash",        // <СПОСОБ ОПЛАТЫ> (payment_encash - Наличными, payment_card_restaurant - Картой курьеру)
                         @"notificationType": @"СМС оповещение",
                         @"deliveryAddress": [@{
                                 @"cityId": @"1",

@@ -58,8 +58,42 @@
                                     <outlet property="titleLabel" destination="V8c-JJ-AId" id="gdo-hd-BhO"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" id="J7D-s9-5vt">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ASFOptionsCell" id="M46-Rj-CEv" customClass="ASFOptionsCell">
                                 <rect key="frame" x="0.0" y="99" width="375" height="71"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M46-Rj-CEv" id="ccq-Dm-pl6">
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="70.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4v-T3-M9T">
+                                            <rect key="frame" x="20" y="8" width="314" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vl8-1j-X3E">
+                                            <rect key="frame" x="20" y="30.5" width="314" height="25.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Vl8-1j-X3E" firstAttribute="leading" secondItem="ccq-Dm-pl6" secondAttribute="leading" constant="20" id="3Ot-Db-TJW"/>
+                                        <constraint firstItem="b4v-T3-M9T" firstAttribute="top" secondItem="ccq-Dm-pl6" secondAttribute="top" constant="8" id="4h0-So-jHV"/>
+                                        <constraint firstItem="b4v-T3-M9T" firstAttribute="leading" secondItem="ccq-Dm-pl6" secondAttribute="leading" constant="20" id="Cof-lf-T28"/>
+                                        <constraint firstItem="Vl8-1j-X3E" firstAttribute="top" secondItem="b4v-T3-M9T" secondAttribute="bottom" constant="8" id="IDe-NH-EmH"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Vl8-1j-X3E" secondAttribute="trailing" id="Jfl-Du-OtI"/>
+                                        <constraint firstItem="b4v-T3-M9T" firstAttribute="trailing" secondItem="ccq-Dm-pl6" secondAttribute="trailingMargin" id="Tow-8b-dsx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleLabel" destination="b4v-T3-M9T" id="qUb-90-HXQ"/>
+                                    <outlet property="valueLabel" destination="Vl8-1j-X3E" id="H5E-ff-49P"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActionCell" id="J7D-s9-5vt">
+                                <rect key="frame" x="0.0" y="170" width="375" height="71"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J7D-s9-5vt" id="Alp-hs-0kp">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>

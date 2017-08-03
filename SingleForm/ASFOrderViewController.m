@@ -9,6 +9,7 @@
 #import "ASFOrderViewController.h"
 
 #import "ASFCellObserver.h"
+#import "ASFOptionsCell.h"
 #import "ASFOrder.h"
 #import "ASFTextFieldCell.h"
 
@@ -18,6 +19,7 @@ static NSString *const CellClassName = @"cellClassName";
 static NSString *const Title = @"title";
 static NSString *const Placeholder = @"placeholder";
 static NSString *const TargetKeyPath = @"targetKeyPath";
+static NSString *const Options = @"Options";
 
 static NSString *const ActionCell = @"ActionCell";
 typedef enum {
@@ -59,7 +61,9 @@ typedef enum {
                 @{ Pos: @5, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Дом", @""), Placeholder: NSLocalizedString(@"25", @""), TargetKeyPath: @"data.deliveryAddress.house" },
                 @{ Pos: @6, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Квартира", @""), Placeholder: NSLocalizedString(@"12", @""), TargetKeyPath: @"data.deliveryAddress.apartment" },
                 // TODO: picker
-                @{ Pos: @7, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Способ оплаты", @""), Placeholder: NSLocalizedString(@"Наличными", @""), TargetKeyPath: @"data.paymentMethod" },
+                @{ Pos: @7, CellClassName: @"ASFOptionsCell", Title: NSLocalizedString(@"Способ оплаты", @""), TargetKeyPath: @"data.paymentMethod",
+                        Options: @{ @"payment_encash": @"Наличными", @"payment_card_restaurant": @"Картой курьеру"}
+                },
                 @{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Комментарий", @""), Placeholder: NSLocalizedString(@"Ваша пицца самая вкусная!", @""), TargetKeyPath: @"data.comments" },
                 @{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество персон", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.persons" },
                 @{ Pos: @10, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество товаров", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.orderItems[0].amount" },
@@ -116,15 +120,30 @@ typedef enum {
     NSDictionary *action = self.actions[indexPath.row];
 
     NSString *cellClassName = action[CellClassName];
-    ASFTextFieldCell *result = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+    ASFCell *result = [tableView dequeueReusableCellWithIdentifier:cellClassName];
     result.observer = self;
     result.context = action;
 
-    result.titleLabel.text = action[Title];
-    result.textField.text = [self.order stringForKeyPath:action[TargetKeyPath]];
-    result.textField.placeholder = action[Placeholder];
+    [self setupDataCell:result];
 
     return result;
+}
+
+- (void)setupDataCell:(ASFCell *)cell {
+    NSDictionary *action = cell.context;
+    NSString *cellClassName = action[CellClassName];
+    if ([@"ASFTextFieldCell" isEqualToString:cellClassName]) {
+        ASFTextFieldCell *textFieldCell = (ASFTextFieldCell *)cell;
+        textFieldCell.titleLabel.text = action[Title];
+        textFieldCell.textField.text = [self.order stringForKeyPath:action[TargetKeyPath]];
+        textFieldCell.textField.placeholder = action[Placeholder];
+    }
+    else if ([@"ASFOptionsCell" isEqualToString:cellClassName]) {
+        ASFOptionsCell *optionsCell = (ASFOptionsCell *)cell;
+        optionsCell.titleLabel.text = action[Title];
+        NSString *value = [self.order stringForKeyPath:action[TargetKeyPath]];
+        optionsCell.valueLabel.text = action[Options][value];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView actionCellForRowAtIndexPath:(NSIndexPath *)indexPath {
