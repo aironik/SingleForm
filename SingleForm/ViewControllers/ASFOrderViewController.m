@@ -12,6 +12,7 @@
 #import "ASFOptionsCell.h"
 #import "ASFOrder.h"
 #import "ASFTextFieldCell.h"
+#import "ASFOptionsViewController.h"
 
 
 static NSString *const Pos = @"pos";
@@ -105,9 +106,9 @@ typedef enum {
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case SectionData:
-            return [self tableView:tableView dataCellForRowAtIndexPath:indexPath];
+            return [self tableView:tableView dataCellForRowAtIndex:indexPath.row];
         case SectionAction:
-            return [self tableView:tableView actionCellForRowAtIndexPath:indexPath];
+            return [self tableView:tableView actionCellForRowAtIndex:indexPath.row];
         default:
             break;
     }
@@ -115,9 +116,9 @@ typedef enum {
     return nil;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView dataCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSAssert(indexPath.section == SectionData && indexPath.row < self.actions.count, @"Unknown row");
-    NSDictionary *action = self.actions[indexPath.row];
+- (UITableViewCell *)tableView:(UITableView *)tableView dataCellForRowAtIndex:(NSInteger)row {
+    NSAssert(row < self.actions.count, @"Unknown row");
+    NSDictionary *action = self.actions[row];
 
     NSString *cellClassName = action[CellClassName];
     ASFCell *result = [tableView dequeueReusableCellWithIdentifier:cellClassName];
@@ -146,15 +147,44 @@ typedef enum {
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView actionCellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSAssert(indexPath.section == SectionAction && indexPath.row == 0, @"Unknown row");
+- (UITableViewCell *)tableView:(UITableView *)tableView actionCellForRowAtIndex:(NSInteger)row {
+    NSAssert(row == 0, @"Unknown row");
     UITableViewCell *result = [tableView dequeueReusableCellWithIdentifier:ActionCell];
     return result;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    switch (indexPath.section) {
+        case SectionData:
+            [self tableView:tableView didSelectDataCellAtIndex:indexPath.row];
+            break;
+        case SectionAction:
+            [self sendData];
+            break;
+        default:
+            // do noithing
+            break;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectDataCellAtIndex:(NSInteger)row {
+    NSAssert(row < self.actions.count, @"Unknown row");
+    NSDictionary *action = self.actions[row];
+    NSString *cellClassName = action[CellClassName];
+    if ([@"ASFTextFieldCell" isEqualToString:cellClassName]) {
+        // do nothing
+    }
+    else if ([@"ASFOptionsCell" isEqualToString:cellClassName]) {
+        ASFOptionsViewController *childVireController = [[ASFOptionsViewController alloc] initWithNibName:nil bundle:nil];
+        childVireController.options = action[Options];
+        [self.navigationController pushViewController:childVireController animated:YES];
+    }
+}
+
+- (void)sendData {
+    // TODO: show modal send view controller.
 }
 
 - (void)cell:(ASFCell *)cell didChangeValue:(NSString *)value context:(NSDictionary *)context {
