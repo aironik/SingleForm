@@ -15,9 +15,9 @@
 
 @property (nonatomic, strong, nullable) NSDictionary *context;
 
-@property (nonatomic, weak) NSObject<ASFCellObserver> *observer;
+@property (nonatomic, weak, nullable) NSObject<ASFCellObserver> *observer;
 
-- (void)valueDidChanged:(NSString *)value;
+- (void)valueDidChanged:(nonnull NSString *)value;
 
 
 @end

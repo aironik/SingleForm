@@ -39,6 +39,9 @@
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="h0y-2C-XZ6" id="uri-yX-QpH"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                     <constraints>

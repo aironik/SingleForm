@@ -8,6 +8,7 @@
 
 #import "ASFOrderViewController.h"
 
+#import "ASFCellObserver.h"
 #import "ASFOrder.h"
 #import "ASFTextFieldCell.h"
 
@@ -26,7 +27,7 @@ typedef enum {
 } Sections;
 
 
-@interface ASFOrderViewController ()
+@interface ASFOrderViewController()<ASFCellObserver>
 
 @property (nonatomic, strong, nonnull) ASFOrder *order;
 @property (nonatomic, strong, nonnull, readonly) NSArray *actions;
@@ -116,6 +117,7 @@ typedef enum {
 
     NSString *cellClassName = action[CellClassName];
     ASFTextFieldCell *result = [tableView dequeueReusableCellWithIdentifier:cellClassName];
+    result.observer = self;
     result.context = action;
 
     result.titleLabel.text = action[Title];
@@ -136,6 +138,9 @@ typedef enum {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)cell:(ASFCell *)cell didChangeValue:(NSString *)value context:(NSDictionary *)context {
+    [self.order setString:value forKeyPath:context[TargetKeyPath]];
+}
 
 
 @end

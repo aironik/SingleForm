@@ -6,7 +6,19 @@
 #import "ASFTextFieldCell.h"
 
 
+@interface ASFTextFieldCell()<UITextFieldDelegate>
+@end
+
+
+#pragma mark - Implementation
+
 @implementation ASFTextFieldCell
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSParameterAssert(self.textField == textField);
+    [self valueDidChanged:textField.text];
+}
 
 
 @end
