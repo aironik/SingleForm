@@ -16,4 +16,7 @@
 /// If keypath does not represent valid data this method do nothing.
 - (void)setString:(NSString *)string forKeyPath:(NSString *)keyPath;
 
+/// @brief Return dictionary representation for serialize into JSON
+- (NSDictionary *)dictionaryValue;
+
 @end

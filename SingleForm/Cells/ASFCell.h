@@ -13,6 +13,9 @@
 @interface ASFCell : UITableViewCell
 
 
+@property (nonatomic, weak, nullable) IBOutlet UILabel *titleLabel;
+@property (nonatomic, weak, nullable) IBOutlet UIView *errorView;
+
 @property (nonatomic, strong, nullable) NSDictionary *context;
 
 @property (nonatomic, weak, nullable) NSObject<ASFCellObserver> *observer;

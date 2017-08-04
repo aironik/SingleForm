@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0047A6CF1F3350890019EFF7 /* ASFNetworkActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0047A6CE1F3350890019EFF7 /* ASFNetworkActivityViewController.xib */; };
 		00770D291F31B83C000901B6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 00770D281F31B83C000901B6 /* main.m */; };
 		00770D2C1F31B83C000901B6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 00770D2B1F31B83C000901B6 /* AppDelegate.m */; };
 		00770D321F31B83C000901B6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00770D301F31B83C000901B6 /* Main.storyboard */; };
@@ -17,10 +18,12 @@
 		C4E3E610E13B8A6096CFA2B8 /* ASFOptionsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E5686DEC6E7E32F31668 /* ASFOptionsCell.m */; };
 		C4E3E7F654C600A67FBA009D /* ASFTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */; };
 		C4E3E8BF000134A02D6096F0 /* ASFOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EB5A8EFBBF01E7150498 /* ASFOrderViewController.m */; };
+		C4E3EDD09F57D694EDCD554E /* ASFNetworkActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EABB9A7600F236B414D9 /* ASFNetworkActivityViewController.m */; };
 		C4E3EE60ADAF44AD67DFC995 /* ASFOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = C4E3EA2D9A72A7ADD0251F6D /* ASFOrder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0047A6CE1F3350890019EFF7 /* ASFNetworkActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ASFNetworkActivityViewController.xib; sourceTree = "<group>"; };
 		00770D241F31B83C000901B6 /* SingleForm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SingleForm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00770D281F31B83C000901B6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		00770D2A1F31B83C000901B6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,12 +36,14 @@
 		C4E3E017E72171EEF2BA60EB /* ASFOptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFOptionsViewController.h; sourceTree = "<group>"; };
 		C4E3E26001F2EE05F8438682 /* ASFOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFOrder.h; sourceTree = "<group>"; };
 		C4E3E2A5408F610FB0DCCF3F /* ASFCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFCell.m; sourceTree = "<group>"; };
+		C4E3E356DBB94DADFBA1A7B9 /* ASFNetworkActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFNetworkActivityViewController.h; sourceTree = "<group>"; };
 		C4E3E4790659C2486668B02C /* ASFOptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFOptionsViewController.m; sourceTree = "<group>"; };
 		C4E3E4DB2A093F12FC0D626B /* ASFCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFCell.h; sourceTree = "<group>"; };
 		C4E3E5686DEC6E7E32F31668 /* ASFOptionsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFOptionsCell.m; sourceTree = "<group>"; };
 		C4E3E82AD4F30BF5207A0C5C /* ASFOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFOrderViewController.h; sourceTree = "<group>"; };
 		C4E3E9789C6100241AAB493A /* ASFTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFTextFieldCell.m; sourceTree = "<group>"; };
 		C4E3EA2D9A72A7ADD0251F6D /* ASFOrder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFOrder.m; sourceTree = "<group>"; };
+		C4E3EABB9A7600F236B414D9 /* ASFNetworkActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFNetworkActivityViewController.m; sourceTree = "<group>"; };
 		C4E3EB2DA5127446C65D49EE /* ASFCellObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFCellObserver.h; sourceTree = "<group>"; };
 		C4E3EB5A8EFBBF01E7150498 /* ASFOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFOrderViewController.m; sourceTree = "<group>"; };
 		C4E3ED76B7F6581C072CF296 /* ASFOptionsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFOptionsCell.h; sourceTree = "<group>"; };
@@ -101,6 +106,9 @@
 		C4E3E271B27DE2BE7AB68C83 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C4E3E356DBB94DADFBA1A7B9 /* ASFNetworkActivityViewController.h */,
+				C4E3EABB9A7600F236B414D9 /* ASFNetworkActivityViewController.m */,
+				0047A6CE1F3350890019EFF7 /* ASFNetworkActivityViewController.xib */,
 				C4E3E017E72171EEF2BA60EB /* ASFOptionsViewController.h */,
 				C4E3E4790659C2486668B02C /* ASFOptionsViewController.m */,
 				C4E3E82AD4F30BF5207A0C5C /* ASFOrderViewController.h */,
@@ -192,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00770D371F31B83C000901B6 /* LaunchScreen.storyboard in Resources */,
+				0047A6CF1F3350890019EFF7 /* ASFNetworkActivityViewController.xib in Resources */,
 				00770D341F31B83C000901B6 /* Assets.xcassets in Resources */,
 				00770D321F31B83C000901B6 /* Main.storyboard in Resources */,
 			);
@@ -212,6 +221,7 @@
 				C4E3E610E13B8A6096CFA2B8 /* ASFOptionsCell.m in Sources */,
 				C4E3E8BF000134A02D6096F0 /* ASFOrderViewController.m in Sources */,
 				C4E3E4B51B1AD1A286EE5346 /* ASFOptionsViewController.m in Sources */,
+				C4E3EDD09F57D694EDCD554E /* ASFNetworkActivityViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

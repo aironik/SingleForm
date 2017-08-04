@@ -11,7 +11,6 @@
 
 @interface ASFOptionsCell : ASFCell
 
-@property (nonatomic, weak, nullable) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak, nullable) IBOutlet UILabel *valueLabel;
 
 @end

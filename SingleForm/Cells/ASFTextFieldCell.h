@@ -11,7 +11,6 @@
 
 @interface ASFTextFieldCell : ASFCell
     
-@property (nonatomic, weak, nullable) IBOutlet UILabel *titleLabel;
 @property (nonatomic, weak, nullable) IBOutlet UITextField *textField;
 
 

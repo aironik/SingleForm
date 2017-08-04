@@ -9,10 +9,11 @@
 #import "ASFOrderViewController.h"
 
 #import "ASFCellObserver.h"
+#import "ASFNetworkActivityViewController.h"
 #import "ASFOptionsCell.h"
+#import "ASFOptionsViewController.h"
 #import "ASFOrder.h"
 #import "ASFTextFieldCell.h"
-#import "ASFOptionsViewController.h"
 
 
 static NSString *const Pos = @"pos";
@@ -21,6 +22,8 @@ static NSString *const Title = @"title";
 static NSString *const Placeholder = @"placeholder";
 static NSString *const TargetKeyPath = @"targetKeyPath";
 static NSString *const Options = @"Options";
+static NSString *const Validator = @"Validator";
+static NSString *const ErrorString = @"ErrorString";
 
 static NSString *const ActionCell = @"ActionCell";
 typedef enum {
@@ -33,7 +36,7 @@ typedef enum {
 @interface ASFOrderViewController()<ASFCellObserver>
 
 @property (nonatomic, strong, nonnull) ASFOrder *order;
-@property (nonatomic, strong, nonnull, readonly) NSArray *actions;
+@property (nonatomic, strong, nonnull, readonly) NSMutableArray *actions;
 
 @end
 
@@ -52,42 +55,30 @@ typedef enum {
     return _order;
 }
 
-- (NSArray *)actions {
+- (NSMutableArray *)actions {
     if (_actions == nil) {
-        _actions = @[
-                @{ Pos: @1, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Евгений Лукашин", @""), TargetKeyPath: @"data.sender.name" },
-                @{ Pos: @2, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Email", @""), Placeholder: NSLocalizedString(@"ivan@example.com", @""), TargetKeyPath: @"" },
-                @{ Pos: @3, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Телефон", @""), Placeholder: NSLocalizedString(@"+7(555)555-55-55", @""), TargetKeyPath: @"data.sender.phone" },
-                @{ Pos: @4, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Улица", @""), Placeholder: NSLocalizedString(@"3-я Строителей", @""), TargetKeyPath: @"data.deliveryAddress.street" },
-                @{ Pos: @5, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Дом", @""), Placeholder: NSLocalizedString(@"25", @""), TargetKeyPath: @"data.deliveryAddress.house" },
-                @{ Pos: @6, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Квартира", @""), Placeholder: NSLocalizedString(@"12", @""), TargetKeyPath: @"data.deliveryAddress.apartment" },
-                // TODO: picker
-                @{ Pos: @7, CellClassName: @"ASFOptionsCell", Title: NSLocalizedString(@"Способ оплаты", @""), TargetKeyPath: @"data.paymentMethod",
+        _actions = [@[
+                [@{ Pos: @1, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Имя", @""), Placeholder: NSLocalizedString(@"Евгений Лукашин", @""), TargetKeyPath: @"data.sender.name" } mutableCopy],
+                [@{ Pos: @2, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Email", @""), Placeholder: NSLocalizedString(@"ivan@example.com", @""), TargetKeyPath: @"", Validator: @"validateEmail:" } mutableCopy],
+                [@{ Pos: @3, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Телефон", @""), Placeholder: NSLocalizedString(@"+7(555)555-55-55", @""), TargetKeyPath: @"data.sender.phone", Validator: @"validatePhone:" } mutableCopy],
+                [@{ Pos: @4, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Улица", @""), Placeholder: NSLocalizedString(@"3-я Строителей", @""), TargetKeyPath: @"data.deliveryAddress.street" } mutableCopy],
+                [@{ Pos: @5, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Дом", @""), Placeholder: NSLocalizedString(@"25", @""), TargetKeyPath: @"data.deliveryAddress.house" } mutableCopy],
+                [@{ Pos: @6, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Квартира", @""), Placeholder: NSLocalizedString(@"12", @""), TargetKeyPath: @"data.deliveryAddress.apartment" } mutableCopy],
+                [@{ Pos: @7, CellClassName: @"ASFOptionsCell", Title: NSLocalizedString(@"Способ оплаты", @""), TargetKeyPath: @"data.paymentMethod",
                         Options: @[
                             @{ @"value": @"payment_encash", @"title": @"Наличными" },
                             @{ @"value": @"payment_card_restaurant", @"title": @"Картой курьеру" }
                         ]
-                },
-                @{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Комментарий", @""), Placeholder: NSLocalizedString(@"Ваша пицца самая вкусная!", @""), TargetKeyPath: @"data.comments" },
-                @{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество персон", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.persons" },
-                @{ Pos: @10, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество товаров", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.orderItems[0].amount" },
-        ];
+                } mutableCopy],
+                [@{ Pos: @8, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Комментарий", @""), Placeholder: NSLocalizedString(@"Ваша пицца самая вкусная!", @""), TargetKeyPath: @"data.comments" } mutableCopy],
+                [@{ Pos: @9, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество персон", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.persons", Validator: @"validatePersons:" } mutableCopy],
+                [@{ Pos: @10, CellClassName: @"ASFTextFieldCell", Title: NSLocalizedString(@"Количество товаров", @""), Placeholder: NSLocalizedString(@"1", @""), TargetKeyPath: @"data.orderItems[0].amount", Validator: @"validateItemsAmount:" } mutableCopy]
+        ] mutableCopy];
     }
     return _actions;
 }
 
 #pragma mark -
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return SectionsCount;
@@ -136,15 +127,17 @@ typedef enum {
 - (void)setupDataCell:(ASFCell *)cell {
     NSDictionary *action = cell.context;
     NSString *cellClassName = action[CellClassName];
+    
+    cell.titleLabel.text = action[Title];
+    cell.errorView.alpha = (action[ErrorString] != nil ? 1.f : 0.f);
+
     if ([@"ASFTextFieldCell" isEqualToString:cellClassName]) {
         ASFTextFieldCell *textFieldCell = (ASFTextFieldCell *)cell;
-        textFieldCell.titleLabel.text = action[Title];
         textFieldCell.textField.text = [self.order stringForKeyPath:action[TargetKeyPath]];
         textFieldCell.textField.placeholder = action[Placeholder];
     }
     else if ([@"ASFOptionsCell" isEqualToString:cellClassName]) {
         ASFOptionsCell *optionsCell = (ASFOptionsCell *)cell;
-        optionsCell.titleLabel.text = action[Title];
         NSString *value = [self.order stringForKeyPath:action[TargetKeyPath]];
         NSArray<NSDictionary<NSString *, NSString *> *> *options = action[Options];
         optionsCell.valueLabel.text = nil;
@@ -170,10 +163,10 @@ typedef enum {
             [self tableView:tableView didSelectDataCellAtIndex:indexPath.row];
             break;
         case SectionAction:
+            [self.view endEditing:YES];
             [self sendData];
             break;
         default:
-            // do noithing
             break;
     }
 }
@@ -200,11 +193,78 @@ typedef enum {
 }
 
 - (void)sendData {
-    // TODO: show modal send view controller.
+    const BOOL dataValid = [self validateData];
+    if (dataValid) {
+        ASFNetworkActivityViewController *vc = [[ASFNetworkActivityViewController alloc] initWithNibName:nil bundle:nil];
+        [vc sendOrder:self.order];
+        UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navCtrl animated:YES completion:^{ }];
+    }
+    else {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Ошибка заполнения", @"")
+                                                                       message:NSLocalizedString(@"Некоторые данные формы заполнены с ошибками", @"")
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", @"OK")
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction *action) {}];
+
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    [self.tableView reloadData];
 }
 
 - (void)cell:(ASFCell *)cell didChangeValue:(NSString *)value context:(NSDictionary *)context {
     [self.order setString:value forKeyPath:context[TargetKeyPath]];
+}
+
+
+#pragma mark - Validators
+
+- (BOOL)validateData {
+    BOOL result = YES;
+    for (NSMutableDictionary *action in self.actions) {
+        NSString *validatorString = action[Validator];
+        if ([validatorString length] > 0) {
+            SEL validatorSelector = NSSelectorFromString(validatorString);
+            NSParameterAssert([self respondsToSelector:validatorSelector]);
+            if ([self respondsToSelector:validatorSelector]) {
+                NSString *value = [self.order stringForKeyPath:action[TargetKeyPath]];
+                const BOOL res = [self performSelector:validatorSelector withObject:value];
+                if (res) {
+                    [action removeObjectForKey:ErrorString];
+                }
+                else {
+                    action[ErrorString] = NSLocalizedString(@"Неправильный формат поля", @"");
+                }
+                result = result && res;
+            }
+        }
+    }
+    return result;
+}
+
+- (BOOL)validateEmail:(NSString *)value {
+    return YES;
+}
+
+- (BOOL)validatePhone:(NSString *)value {
+    // +7 (555) 555-55-55
+    NSString *pattern = @"(^)(\\+7)(\\s*)(\\(\\d{3}\\))(\\s*)(\\d{3}\\-\\d{2}\\-\\d{2})($)";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern
+                                                                           options:NSRegularExpressionCaseInsensitive
+                                                                             error:NULL];
+    return ([regex numberOfMatchesInString:value options:NSMatchingAnchored range:NSMakeRange(0, value.length)] > 0);
+}
+
+- (BOOL)validatePersons:(NSString *)value {
+    int v = [value intValue];
+    return (v > 0 && v <= 10);
+}
+
+- (BOOL)validateItemsAmount:(NSString *)value {
+    int v = [value intValue];
+    return (v > 0);
 }
 
 

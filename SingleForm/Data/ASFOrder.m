@@ -90,7 +90,7 @@
 - (void)setString:(NSString *)string forKeyPath:(NSString *)keyPath {
     // TODO: get rid copy-past code
     __block id data = self.data;
-    NSArray *keyComponents = [keyPath componentsSeparatedByString:@"."];
+    NSArray *keyComponents = (keyPath.length > 0 ? [keyPath componentsSeparatedByString:@"."] : nil);
     [keyComponents enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
         NSString *key = obj;
         if ([key containsString:@"["]) {
@@ -117,6 +117,10 @@
             }
         }
     }];
+}
+
+- (NSDictionary *)dictionaryValue {
+    return self.data;
 }
 
 @end
